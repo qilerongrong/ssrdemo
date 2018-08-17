@@ -8,12 +8,24 @@ function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
 
+let project = "demo";
+let prot = "3000";
 
+process.argv.some(function(arg) {
+  let arr = arg.match(/\-\-env=([a-zA-Z0-9\-_,]+)/);
+  if(arr){
+    let config = arr[1].split(',');
+    project = config[0];
+    if(config[1]){
+      port = config[1];
+    }
+  }
+});
 
 module.exports = {
   context: path.resolve(__dirname, '../'),
   entry: {
-    app: './src/main.js'
+    app: `./src/${project}/client/index.js`
   },
   output: {
     path: config.build.assetsRoot,
