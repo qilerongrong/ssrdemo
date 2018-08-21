@@ -10,10 +10,14 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const VueSSRServerPlugin = require('vue-server-renderer/client-plugin')
 
 const env = require('../config/prod.env')
 
 const webpackConfig = merge(baseWebpackConfig, {
+  entry: {
+    app: `./src/${config.app}/client/index.js`
+  },
   module: {
     rules: utils.styleLoaders({
       sourceMap: config.build.productionSourceMap,
@@ -24,8 +28,8 @@ const webpackConfig = merge(baseWebpackConfig, {
   devtool: config.build.productionSourceMap ? config.build.devtool : false,
   output: {
     path: config.build.assetsRoot,
-    filename: utils.assetsPath('js/[name].[chunkhash].js'),
-    chunkFilename: utils.assetsPath('js/[id].[chunkhash].js')
+    filename: utils.assetsPath('js/[name].[chunkhash:8].js'),
+    chunkFilename: utils.assetsPath('js/[name].[chunkhash:8].js')
   },
   plugins: [
     // http://vuejs.github.io/vue-loader/en/workflow/production.html

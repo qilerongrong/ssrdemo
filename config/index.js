@@ -4,9 +4,25 @@
 
 const path = require('path')
 
-module.exports = {
-  dev: {
+let app = "demo";
+let serverPort = "3000";
+process.argv.some(function(arg) {
+  let arr = arg.match(/\-\-env=([a-zA-Z0-9\-_,]+)/);
+  if(arr){
+    let args = arr[1].split(',');
+    project = args[0];
+    if(args[1]){
+      port = args[1];
+    }
+  }
+})
+console.dir({app});
+console.dir({serverPort})
 
+module.exports = {
+  app: app,
+  servertPort: serverPort,
+  dev: {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
