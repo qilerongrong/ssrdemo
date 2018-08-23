@@ -1,6 +1,7 @@
-import Vuex from 'vuex'
+import Vue from 'vue'
+import vuex from 'vuex'
 import demo from 'stores/demo'
-
+Vue.use(vuex);
 const state = {
     message:{
         type:'error',

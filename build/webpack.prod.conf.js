@@ -6,11 +6,11 @@ const config = require('../config')
 const merge = require('webpack-merge')
 const baseWebpackConfig = require('./webpack.base.conf')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+// const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
-const VueSSRClientPlugin = require('vue-server-renderer/client-plugin')
+// const VueSSRClientPlugin = require('vue-server-renderer/client-plugin')
 
 const env = require('../config/prod.env')
 
@@ -28,8 +28,8 @@ const webpackConfig = merge(baseWebpackConfig, {
   devtool: config.build.productionSourceMap ? config.build.devtool : false,
   output: {
     path: config.build.assetsRoot,
-    filename: utils.assetsPath(`${config.app}/[name].[chunkhash:8].js`),
-    chunkFilename: utils.assetsPath(`${config.app}/[name].[chunkhash:8].js`)
+    filename: utils.assetsPath(`/[name].[chunkhash:8].js`),
+    chunkFilename: utils.assetsPath(`/[name].[chunkhash:8].js`)
   },
   plugins: [
     // http://vuejs.github.io/vue-loader/en/workflow/production.html
@@ -121,8 +121,8 @@ const webpackConfig = merge(baseWebpackConfig, {
         to: config.build.assetsSubDirectory,
         ignore: ['.*']
       }
-    ]),
-    new VueSSRClientPlugin()
+    ])
+    // new VueSSRClientPlugin()
   ]
 })
 

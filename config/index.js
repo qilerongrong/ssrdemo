@@ -24,7 +24,7 @@ module.exports = {
   servertPort: serverPort,
   dev: {
     // Paths
-    assetsSubDirectory: 'static',
+    assetsSubDirectory: app,
     assetsPublicPath: '/',
     proxyTable: {},
 
@@ -58,7 +58,7 @@ module.exports = {
 
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
-    assetsSubDirectory: 'static',
+    assetsSubDirectory: app,
     assetsPublicPath: '/',
 
     /**
