@@ -1,15 +1,23 @@
-import {createApp} from '../app.js'
+import Koa from 'koa'
+// import router from './router'
+import fs from 'fs'
+import path from 'path'
+import body from 'koa-body'
+import serve from 'koa-static'
+import render from './middleware/render'
+// import serverBundle from 'dist/vue-ssr-server-bundle.json'
+// import clientManifest from 'dist/vue-ssr-client-manifest.json'
 
-export default (context) => {
-    return new Promise((resolve, reject) => {
-        const { app, router } = createApp();
-        router.push(context.url);
-        router.onReady(() => {
-            const matchedComps = router.getMatchedComponents();
-            if(!matchedComps.length){
-                return reject({code:404})
-            }
-            resolve(app);
-        }, reject)
-    });
-}
+const app = new Koa();
+app.use(body({
+    multipart:true,
+    encoding:'gzip'
+}));
+// app.use(router.routes());
+
+app.use(serve('./dist'));
+app.use(render)
+const port = process.env.PORT || 8080
+app.listen(port, () => {
+    console.log(`server started at localhost:${port}`)
+})

@@ -9,7 +9,7 @@ module.exports = merge(base,{
     
     // 将 entry 指向应用程序的 server entry 文件
     entry:{
-        server:`./src/${config.app}/server/server.js`
+        index:`./src/${config.app}/server/index.js`
         // server:`./src/${config.app}/server/server.js`
     },
     
@@ -23,7 +23,7 @@ module.exports = merge(base,{
 
     // 此处告知 server bundle 使用 Node 风格导出模块(Node-style exports)
     output: {
-        filename:utils.assetsPath(`/[name].js`),
+        filename:utils.assetsPath(`server/[name].js`),
         libraryTarget: 'commonjs2'
     },
 
